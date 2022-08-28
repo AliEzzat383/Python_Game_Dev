@@ -17,7 +17,7 @@ class Blocks:
         self.OldX = x
         self.OldY = y
         # pygame.draw.rect(canvas, color, (x, y, w, h))
-    def move(self,dx,dy,last):
+    def move(self,dx,dy,last):                                      # motion originates from bottom right of screen
         keys = pygame.key.get_pressed()
         keypressed = last
         if keys[pygame.K_UP] and self.Y >= 3 and keypressed !="down":
@@ -50,25 +50,25 @@ class Blocks:
     def move_child(self,x,y):
         # self.X = x - dx*2
         # self.Y = y - dy*2
-
-        xx = x - self.X
+                                       #request elaboration of xx & yy
+        xx = x - self.X      
         yy = y - self.Y
-        if xx > 25:
+        if xx > 25:                    #RIGHT
             self.X = self.X + 25
             self.Y = y
-        elif xx < -25:
+        elif xx < -25:                 #LEFT
             self.X = self.X - 25
             self.Y = y
-        elif yy > 25:
+        elif yy > 25:                  #DOWN
             self.Y = self.Y + 25
             self.X = x
-        elif yy < -25:
+        elif yy < -25:                  #UP
             self.Y = self.Y - 25
             self.X = x
-        # self.X = self.X + dx
-        # self.Y = self.Y + yy
+        #self.X = self.X + xx
+        #self.Y = self.Y + yy
         print("  ")
-    def move_snake(self,father):
+    def move_snake(self,father):      #feedback loop fills the gaps out of IF ranges (no need to move by 25)
         self.OldX = self.X
         self.OldY = self.Y
         self.X = father.OldX
@@ -85,11 +85,17 @@ and target.H + Y > self.Y:
             return True
         else:
             return False
+
+    def is_colide(self,child):
+        if self.X == child.X or self.Y == child.Y :
+            return True
+        else:
+            return False
     # def child(self,display):
     #     child = Blocks(self.X-self.W, self.Y, self.W, self.H, self.color,display)
     #     # snake.append(child)
     #     return child
-    def create_child(self,snake,display):
+    def create_child1(self,snake,display):                                                  #prioratizes the background method varient
         father = snake[len(snake)-1]
         snake.append(Blocks(father.OldX,father.OldY,father.W,father.H,rand_color(),display))
         return snake

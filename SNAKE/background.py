@@ -24,7 +24,7 @@ def draw_snake(display,block):
     pygame.draw.rect(display, block.color, (block.X, block.Y, block.W, block.H))
     pygame.display.update()
 
-def create_child(snake,display):
+def create_child(snake,display):                                                   #actual method used not the one in blocks file
     father = snake[len(snake)-1]
     snake.append(Blocks(father.X-father.W,father.Y,father.W,father.H,father.color,display))
     return snake
