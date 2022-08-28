@@ -59,4 +59,5 @@ while running:
     if head.is_border():
         write_stuff(dis,'YOU LOST', 24, red, 179, 230)
         eaten = 0
+        running = False
         
