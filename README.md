@@ -1,3 +1,3 @@
 # Python_Game_Dev
- game development of snake in python using object oriented programming
+ game development in python using Pygame library
  
